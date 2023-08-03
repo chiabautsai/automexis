@@ -265,7 +265,7 @@ export const handleIncoming = async ( env, fileMeta ) => {
       data.matched.lookupData = processKeyValuePair(matched.lookupData);
       data.matched.albumSongs = matched.albumSongs.map( (v) => processKeyValuePair(v) );
     }
-    toSend.collectionId = matched.lookupData.collectionId;
+    toSend.collectionId = matched.lookupData.collectionId.toString();
 
     // Step 3: Render html to string
     const rendered = Mustache.render(template, data);
