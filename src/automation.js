@@ -304,6 +304,8 @@ export const handleIncoming = async ( env, fileMeta ) => {
   catch (e) {
     // Cannot parse and/or no match
     // Invoke hook directly
+
+    invokeHook(env, toSend);
     
     console.log(e);
     throw e;
