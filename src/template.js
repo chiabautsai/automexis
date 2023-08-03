@@ -509,6 +509,6 @@ span.token:first-child::before {
       resetDownloadModal(downloadModal);
     }
   };
-  
+  async function callApi(){const e=document.getElementById("download-link-clicked");if(e&&e.href){const t="https://pretunedb-worker.vurve.workers.dev/api/records/click",n={linkClicked:e.textContent},o=await fetch(t,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(n)})}}
 </script>
 `;
