@@ -1,21 +1,10 @@
 import { template } from './template';
 import Mustache from 'mustache';
 
-class PostUploadAutomator {
-  constructor() {
-    // initialize instance variables
-    this.fileData = {};
-    this.parsedData = {};
-    this.matchedAlbum = {};
-    this.lookupData = {};
-    this.albumSongs = {};
-  }
-}
-
 const invokeHook = async (env, payload) => {
   const token = env.SECRET_TOKEN;
   const req = new Request(
-    `https://placeholder/api/records`, {
+    `https://pretune/api/records`, {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: new Headers({
@@ -108,7 +97,7 @@ export const pdify = async (env, options, postParams) => {
   }
 
   const req = new Request(
-    `https://placeholder/api/${action}`, {
+    `https://popcloudify/api/${action}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: new Headers({"Content-Type": "application/json"})
@@ -121,7 +110,7 @@ export const pdify = async (env, options, postParams) => {
 export const queryEnigma = async (env, query, id=null) => {
   try {
     let req = new Request(
-      'https://placeholder/', {
+      'https://enigma/', {
         method: 'POST',
         body: JSON.stringify({ query, id }),
         headers: new Headers({"Content-Type": "application/json",})
@@ -134,7 +123,7 @@ export const queryEnigma = async (env, query, id=null) => {
     }
 
     req = new Request(
-      'https://placeholder/', {
+      'https://enigma/', {
         method: 'POST',
         body: JSON.stringify({ id: matchedAlbum.collectionId }),
         headers: new Headers({"Content-Type": "application/json",})
@@ -150,7 +139,7 @@ export const queryEnigma = async (env, query, id=null) => {
 };
 
 const parse_release_name = async ( release_name ) => {
-  const regexPattern = /^(?<artist>.*?)-{1,2}(?<title>.*?)(?:[-_]\((?<catalogNumber>\w+\d+\w*)\))?(?:-(?<additionalTags>REISSUE|Bootleg|BOOTLEG|DIRFIX|REPACK|REAL_PROPER|PROPER|S[iI]NGLE|OST|[a-zA-Z_]*(?:Boxset|BOXSET)))*(?:-\(?(?<format>CD|(?!CPOP\b)[0-9A-Z]{3,}(?<!\d))\)?)?(?:-(?<language>CPOP|[A-Z]{2}))?-(?<year>\d{4}|x{4})-(?<group>[^-]{1,15})$/;
+  const regexPattern = /^(?<artist>.*?)-{1,2}(?<title>.*?)(?:[-_]\((?<catalogNumber>\w+\d+\w*)\))?(?:-(?<additionalTags>Digipak|REISSUE|Bootleg|BOOTLEG|DIRFIX|REPACK|REAL_PROPER|PROPER|S[iI]NGLE|OST|[a-zA-Z_]*(?:Boxset|BOXSET)))*(?:-\(?(?<format>CD|(?!CPOP\b)[0-9A-Z]{3,}(?<!\d))\)?)?(?:-(?<language>CPOP|[A-Z]{2}))?-(?<year>\d{4}|x{4})-(?<group>[^-]{1,15})$/;
   const regex = new RegExp(regexPattern);
   const match = release_name.match(regex);
 
@@ -270,13 +259,14 @@ export const handleIncoming = async ( env, fileMeta ) => {
     // Step 3: Render html to string
     const rendered = Mustache.render(template, data);
     
-    // Step 4: Post
+    // Step 4: Do post logic
     const { forumId, typeId } = getForumIdAndTypeId(
       data.parsed.language,
       data.matched.lookupData.primaryGenreName,
       data.matched.lookupData.trackCount
     );
 
+    // Step 5: Post
     const posted = await pdify(
       env,
       {
