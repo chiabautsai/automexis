@@ -139,7 +139,7 @@ export const queryEnigma = async (env, query, id=null) => {
 };
 
 const parse_release_name = async ( release_name ) => {
-  const regexPattern = /^(?<artist>.*?)-{1,2}(?<title>.*?)(?:[-_]\((?<catalogNumber>\w+\d+\w*)\))?(?:-(?<additionalTags>Digipak|REISSUE|Bootleg|BOOTLEG|DIRFIX|REPACK|REAL_PROPER|PROPER|S[iI]NGLE|OST|[a-zA-Z_]*(?:Boxset|BOXSET)))*(?:-\(?(?<format>CD|(?!CPOP\b)[0-9A-Z]{3,}(?<!\d))\)?)?(?:-(?<language>CPOP|[A-Z]{2}))?-(?<year>\d{4}|x{4})-(?<group>[^-]{1,15})$/;
+  const regexPattern = /^(?<artist>.*?)-{1,2}(?<title>.*?)(?:[-_]\((?<catalogNumber>\w+\d+\w*)\))?(?:-(?<additionalTags>Digi(?:pak|pack)|REISSUE|Bootleg|BOOTLEG|DIRFIX|REPACK|REAL_PROPER|PROPER|S[iI]NGLE|OST|[a-zA-Z_]*(?:Boxset|BOXSET)))*(?:-\(?(?<format>CD|(?!CPOP\b)[0-9A-Z]{3,}(?<!\d))\)?)?(?:-(?<language>CPOP|[A-Z]{2}))?-(?<year>\d{4}|x{4})-(?<group>[^-]{1,15})$/;
   const regex = new RegExp(regexPattern);
   const match = release_name.match(regex);
 
