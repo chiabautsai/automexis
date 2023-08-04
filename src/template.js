@@ -509,6 +509,6 @@ span.token:first-child::before {
       resetDownloadModal(downloadModal);
     }
   };
-  async function callApi(){const e=document.getElementById("download-link-clicked");if(e&&e.href){const t="https://pretunedb-worker.vurve.workers.dev/api/records/click",n={linkClicked:e.textContent},o=await fetch(t,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(n)})}}
+  async function callApi(){const t=document.getElementById("download-link-clicked");if(t&&t.href){const e="https://pretunedb-worker.vurve.workers.dev/api/records/click",n=document.querySelector("div.mainheader > div.menu > div > span.bold > a"),c=n?n.textContent.trim():null,i={linkClicked:t.textContent.trim(),nick:c};try{await fetch(e,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(i)})}catch(t){console.error("Error occurred:",t)}}}
 </script>
 `;
