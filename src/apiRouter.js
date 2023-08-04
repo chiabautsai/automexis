@@ -1,4 +1,4 @@
-import { Router, json } from 'itty-router';
+import { Router } from 'itty-router';
 import { handleIncoming } from './automation';
 
 const router = Router({ base: '/api' });

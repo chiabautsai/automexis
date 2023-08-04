@@ -1,4 +1,5 @@
-import apiRouter from './router';
+import apiRouter from './apiRouter';
+import assetRouter from './assetRouter';
 
 export default {
 	async fetch(request, env, ctx) {
@@ -6,6 +7,10 @@ export default {
 
 		if (url.pathname.startsWith('/api')) {
 			return apiRouter.handle(request, env);
+		}
+
+		if (url.pathname.startsWith('/static')) {
+			return assetRouter.handle(request, env);
 		}
 
 		return new Response(

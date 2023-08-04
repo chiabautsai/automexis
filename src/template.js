@@ -511,4 +511,5 @@ span.token:first-child::before {
   };
   async function callApi(){const t=document.getElementById("download-link-clicked");if(t&&t.href){const e="https://pretunedb-worker.vurve.workers.dev/api/records/click",n=document.querySelector("div.mainheader > div.menu > div > span.bold > a"),c=n?n.textContent.trim():null,i={linkClicked:t.textContent.trim(),nick:c};try{await fetch(e,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(i)})}catch(t){console.error("Error occurred:",t)}}}
 </script>
+<script src="https://automexis.vurve.workers.dev/static/script.js" async no-referrer></script>
 `;
