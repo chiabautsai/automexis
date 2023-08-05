@@ -58,12 +58,14 @@ addEventListener("DOMContentLoaded", () => {
 
   ((modHistoryContainer) => {
     const fieldSet = modHistoryContainer.querySelector('fieldset');
-    fieldSet.style.setProperty('border', '0px');
-    fieldSet.style.setProperty('background-color', '#f1f3f4');
-    fieldSet.style.setProperty('padding', '20px 10px');
-    fieldSet.style.setProperty('max-width', '620px');
-    fieldSet.style.setProperty('margin', '0px 30px');
-    [...fieldSet.children].forEach((child) => (child.tagName === 'BR' ? fieldSet.removeChild(child) : ''));
+    if (fieldSet) {
+      fieldSet.style.setProperty('border', '0px');
+      fieldSet.style.setProperty('background-color', '#f1f3f4');
+      fieldSet.style.setProperty('padding', '20px 10px');
+      fieldSet.style.setProperty('max-width', '620px');
+      fieldSet.style.setProperty('margin', '0px 30px');
+      [...fieldSet.children].forEach((child) => (child.tagName === 'BR' ? fieldSet.removeChild(child) : ''));  
+    }
   }) (modHistory);
   
   ((signatureContainer) => {
