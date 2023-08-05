@@ -17,55 +17,16 @@ addEventListener("DOMContentLoaded", () => {
         postContent.removeChild(postContentChildren[x]);
     }
   }}) (postContent);
-  
-  ((disclaimerContainer) => {
-    const disclaimerInner = disclaimerContainer.querySelector('td');
-  
-    disclaimerContainer.width = '91%';
-    disclaimerContainer.style.maxWidth = '640px';
-    disclaimerContainer.style.setProperty('border-collapse', 'collapse', 'important');
-    disclaimerContainer.style.setProperty('margin','8px 30px');
-
-    disclaimerInner.style.padding = '16px';
-    disclaimerInner.style.backgroundColor = '#ffba0005';
-    return true;
-  }) (disclaimerTable);
-  
-  ((signatureContainer) => {
-    const signatureTd = signatureContainer.firstChild;
-    const signatureDiv = signatureTd.querySelector('div');
-  
-    [...signatureTd.children].forEach((child) => (child.tagName === 'BR' ? signatureTd.removeChild(child) : ''));
-    signatureTd.querySelector('img').style.display = 'block';
-    signatureTd.style.padding = '25px 10px';
-
-    signatureDiv.style.float = 'left';
-    signatureDiv.style.setProperty('margin', '5px auto 5px');
-    signatureDiv.style.setProperty('padding', '5px 10px');
-    signatureDiv.style.maxWidth = '840px';
-  }) (signature);
-
-  ((modHistoryContainer) => {
-    const fieldSet = modHistoryContainer.querySelector('fieldset');
-    fieldSet.style.setProperty('border', '0px');
-    fieldSet.style.setProperty('background-color', '#f1f3f4');
-    fieldSet.style.setProperty('padding', '20px 10px');
-    fieldSet.style.setProperty('max-width', '620px');
-    fieldSet.style.setProperty('margin', '0px 30px');
-    [...fieldSet.children].forEach((child) => (child.tagName === 'BR' ? fieldSet.removeChild(child) : ''));
-  }) (modHistory);
 
   ((postContentText) => {
     if (postContentText.lastElementChild.tagName === 'I') {
       const editionData = postContentText.lastElementChild.textContent.trim();
       const toBeRemoved = [];
-      postContentText.childNodes.forEach((node) => {
-          if (node.textContent === '\n\n[' || 
-              node.textContent === ']' ||
-              node.nodeName === 'I' ) {
-              toBeRemoved.push(node);
-          }
-      });
+
+      for (let x = 1; x <= 3; x++ ) {
+        toBeRemoved.push(postContentText.childNodes[postContentText.childNodes.length - x]);
+      }
+
       toBeRemoved.forEach((e) => postContentText.removeChild(e));
       const newDivWrapper = document.createElement("div");
       const newDiv = document.createElement("div");
@@ -81,6 +42,44 @@ addEventListener("DOMContentLoaded", () => {
       newDiv.style.setProperty('border-left', '4px solid #ffa602');
     }
   }) (postContentText);
+  
+  ((disclaimerContainer) => {
+    const disclaimerInner = disclaimerContainer.querySelector('td');
+  
+    disclaimerContainer.width = '91%';
+    disclaimerContainer.style.maxWidth = '640px';
+    disclaimerContainer.style.setProperty('border-collapse', 'collapse', 'important');
+    disclaimerContainer.style.setProperty('margin','8px 30px');
+
+    disclaimerInner.style.padding = '16px';
+    disclaimerInner.style.backgroundColor = '#ffba0005';
+    return true;
+  }) (disclaimerTable);
+
+  ((modHistoryContainer) => {
+    const fieldSet = modHistoryContainer.querySelector('fieldset');
+    fieldSet.style.setProperty('border', '0px');
+    fieldSet.style.setProperty('background-color', '#f1f3f4');
+    fieldSet.style.setProperty('padding', '20px 10px');
+    fieldSet.style.setProperty('max-width', '620px');
+    fieldSet.style.setProperty('margin', '0px 30px');
+    [...fieldSet.children].forEach((child) => (child.tagName === 'BR' ? fieldSet.removeChild(child) : ''));
+  }) (modHistory);
+  
+  ((signatureContainer) => {
+    const signatureTd = signatureContainer.firstChild;
+    const signatureDiv = signatureTd.querySelector('div');
+  
+    [...signatureTd.children].forEach((child) => (child.tagName === 'BR' ? signatureTd.removeChild(child) : ''));
+    signatureTd.querySelector('img').style.display = 'block';
+    signatureTd.style.padding = '25px 10px';
+
+    signatureDiv.style.float = 'left';
+    signatureDiv.style.setProperty('margin', '5px auto 5px');
+    signatureDiv.style.setProperty('padding', '5px 10px');
+    signatureDiv.style.maxWidth = '840px';
+  }) (signature);
+
 });
 `;
 
